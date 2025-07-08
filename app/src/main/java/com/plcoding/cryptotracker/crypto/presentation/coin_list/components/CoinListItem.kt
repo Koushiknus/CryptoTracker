@@ -6,6 +6,8 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -19,6 +21,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.plcoding.cryptotracker.crypto.domain.Coin
@@ -80,6 +83,11 @@ fun CoinListItem(
                 color = contentColor
 
             )
+            //Adds a space
+            Spacer(modifier = Modifier.height(8.dp))
+            PriceChange(
+                change = coinUi.changePercent24Hr
+            )
         }
 
 
@@ -87,7 +95,7 @@ fun CoinListItem(
 
 
 }
-@Preview
+@PreviewLightDark
 @Composable
 private fun CoinListItemPreview() {
     CryptoTrackerTheme {
@@ -110,5 +118,5 @@ internal val previewCoin = Coin(
     symbol = "BTC",
     marketCapUsd = 1243567888.75,
     priceUsd = 62828.15,
-    changePercent24hr = 0.1
+    changePercent24hr = -0.1
 ).toCoinUi()
