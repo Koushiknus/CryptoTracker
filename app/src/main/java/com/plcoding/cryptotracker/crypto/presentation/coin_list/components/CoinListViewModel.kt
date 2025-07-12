@@ -22,7 +22,7 @@ class CoinListViewModel(
     private val _state = MutableStateFlow(CoinListState())
     //Immutable
 
-    val state  = _state
+    val state = _state
         .onStart {
             loadCoins()
         }
@@ -36,25 +36,27 @@ class CoinListViewModel(
         )
 
     fun onAction(action: CoinListAction) {
-        when(action) {
+        when (action) {
             CoinListAction.OnRefresh -> TODO()
             is CoinListAction.onCoinClick -> TODO()
         }
     }
 
-   // When flow collection starts
+    // When flow collection starts
     private fun loadCoins() {
         viewModelScope.launch {
             //Copies existing state
 
-            _state.update { it.copy(
-                isLoading = true
-            ) }
-            coinDataSource.getCoins().onSuccess { coins->
-                   _state.update { it.copy(isLoading = false,coins = coins.map { it.toCoinUi() }) }
+            _state.update {
+                it.copy(
+                    isLoading = true
+                )
+            }
+            coinDataSource.getCoins().onSuccess { coins ->
+                _state.update { it.copy(isLoading = false, coins = coins.map { it.toCoinUi() }) }
             }
                 .onError { error ->
-                     _state.update { it.copy(isLoading = false) }
+                    _state.update { it.copy(isLoading = false) }
 
                 }
         }
