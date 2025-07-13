@@ -34,7 +34,6 @@ fun CoinListScreen(
     modifier :Modifier = Modifier
 ) {
 
-
     if(state.isLoading) {
         Box(
             modifier = modifier.fillMaxSize(),
