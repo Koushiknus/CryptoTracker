@@ -30,6 +30,7 @@ class RemoteCoinDataSource(
             // --- Option 1: Return mock success data ---
         if(useMockData) {
             val mockCoins = MockCoinUtils.generateMockCoins(count = 20)
+          // return Result.Error(NetworkError.NO_INTERNET)
             return Result.Success(mockCoins)
         }else{
             return safeCall<CoinResponseDto> {
